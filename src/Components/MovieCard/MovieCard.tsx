@@ -3,7 +3,7 @@ import React from 'react';
 import Card from '../Card/Card';
 import Bookmark from '../../Assets/bookmarkFill.svg';
 
-const MovieCard = () => {
+const MovieCard = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Card />
@@ -14,16 +14,16 @@ const MovieCard = () => {
         </View>
         <View>
           <Text style={styles.title}>Release Date:</Text>
-          <Text style={styles.description}>Shilit</Text>
+          <Text style={styles.description}>Dolor</Text>
         </View>
         <View>
           <Text style={styles.title}>Avarage Rating:</Text>
-          <Text style={styles.description}>Bosku</Text>
+          <Text style={styles.description}>Amet</Text>
         </View>
       </View>
       <View style={styles.containerBook}>
         <Bookmark />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Detailsmovie')}>
           <Text style={styles.readmore}>Read More</Text>
         </TouchableOpacity>
       </View>

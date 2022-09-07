@@ -1,14 +1,20 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import DetailsMovie from './src/Screens/DetailsMovie/DetailsMovie';
-import Home from './src/Screens/Home/Home';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import Navigation from './src/Navigations/Navigation';
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#242A32',
+  },
+};
 
 const App = () => {
   return (
-    <SafeAreaView style={{backgroundColor: '#242A32', height: '100%'}}>
-      {/* <Home /> */}
-      <DetailsMovie />
-    </SafeAreaView>
+    <NavigationContainer theme={MyTheme}>
+      <Navigation />
+    </NavigationContainer>
   );
 };
 

@@ -1,8 +1,15 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import Card from '../../Components/Card/Card';
+import BackArrow from '../../Assets/arrow.svg';
+import Bookmarked from '../../Assets/bookmarked.svg';
+import Notbookmarked from '../../Assets/notBookmarked.svg';
 
-const DetailsMovie = () => {
+const DetailsMovie = ({navigation}) => {
+  const [bookmark, setBookmark] = useState(true);
+  const handleBookmark = () => {
+    setBookmark(!bookmark);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.bannerMovie}></View>
@@ -38,6 +45,20 @@ const DetailsMovie = () => {
           <Text style={styles.description}>48.261451</Text>
         </View>
       </View>
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => navigation.goBack()}>
+        <BackArrow />
+        <Text style={styles.text}>Back</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.buttonBookmark,
+          !bookmark ? styles.buttonBookmark : styles.buttonBookmarked,
+        ]}
+        onPress={() => handleBookmark()}>
+        {!bookmark ? <Bookmarked /> : <Notbookmarked />}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -100,5 +121,38 @@ const styles = StyleSheet.create({
     height: 200,
     width: '100%',
     backgroundColor: 'red',
+  },
+  text: {
+    fontSize: 18,
+    color: '#EEEEEE',
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#3A3F47',
+    paddingHorizontal: 20,
+    width: 120,
+    height: 50,
+    borderRadius: 18,
+    bottom: 10,
+    left: 10,
+  },
+  buttonBookmark: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#4FCCA3',
+    paddingTop: 12,
+    width: 50,
+    height: 50,
+    borderRadius: 18,
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
+  buttonBookmarked: {
+    backgroundColor: '#3A3F47',
   },
 });

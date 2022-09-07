@@ -1,20 +1,47 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
-import React from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+} from 'react-native';
+import React, {useEffect} from 'react';
 import Search from '../../Components/Search/Search';
 import Card from '../../Components/Card/Card';
-import MovieCard from '../../Components/MovieCard/MovieCard';
+import BookmarkFill from '../../Assets/bookmarkGreenFill.svg';
+import {getMovies} from './action';
 
-const Home = () => {
+const Home = ({navigation}) => {
+  // useEffect(() => {
+  //   getMovies();
+  // }, []);
+
   return (
-    <View>
+    <View style={{height: '100%'}}>
       <Search />
-      {/* <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Card />
         <Card />
         <Card />
-      </ScrollView> */}
-      <MovieCard />
-      <MovieCard />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </ScrollView>
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => navigation.navigate('Watchlist')}>
+        <Text style={styles.text}>Watch List</Text>
+        <BookmarkFill />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -29,5 +56,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingHorizontal: 6,
     paddingTop: 16,
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#4FCCA3',
+    paddingHorizontal: 18,
+    width: 160,
+    height: 50,
+    borderRadius: 18,
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
+  text: {
+    fontSize: 18,
+    color: '#242A32',
+    fontWeight: 'bold',
   },
 });
