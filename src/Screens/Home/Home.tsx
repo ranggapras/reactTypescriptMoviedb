@@ -4,38 +4,33 @@ import {
   TouchableOpacity,
   View,
   Text,
+  SafeAreaView,
+  FlatList,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import Search from '../../Components/Search/Search';
 import Card from '../../Components/Card/Card';
 import BookmarkFill from '../../Assets/bookmarkGreenFill.svg';
 import {getMovies} from './action';
+import {useAppDispatch, useAppSelector} from '../../Store/store';
 
 const Home = ({navigation}) => {
-  // useEffect(() => {
-  //   getMovies();
-  // }, []);
+  const {movie} = useAppSelector(state => state.movie);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getMovies());
+  }, [dispatch]);
 
   return (
     <View style={{height: '100%'}}>
       <Search />
-      <ScrollView contentContainerStyle={styles.container}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </ScrollView>
+      <FlatList
+        data={movie}
+        renderItem={Card}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.container}
+        numColumns={3}
+      />
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => navigation.navigate('Watchlist')}>
@@ -51,8 +46,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     paddingHorizontal: 6,
     paddingTop: 16,
