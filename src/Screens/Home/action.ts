@@ -9,7 +9,7 @@ export const getMovies = createAsyncThunk(
         'https://api.themoviedb.org/3/movie/popular?api_key=cea114821ca63be1bd87887a0c4b28b8&page=1',
       )
       .then(response => {
-        console.log('fullfilled', response.data);
+        console.log('fullfilled', response.data.result);
 
         return response.data;
       })
